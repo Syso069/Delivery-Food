@@ -1,5 +1,7 @@
 import os
 
+restaurante = ['AiFoude', 'Hamburgui Du Zé']
+
 def exibir_nome_do_aplicativo():
     print('''
 ░█████╗░██╗  ███████╗░█████╗░██████╗░███████╗
@@ -16,41 +18,59 @@ def exibir_opcoes():
     print('4. Sair\n')
 
 def escolher_opcao():
-    opcao_escolhida = int(input('Escolha uma opção: '))
-    match opcao_escolhida:
-        case 1:
-            cadastro_restaurante()
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
+        match opcao_escolhida:
+            case 1:
+                cadastro_restaurante()
 
-        case 2:
-            listar_restaurante()
+            case 2:
+                listar_restaurante()
 
-        case 3: 
-            ativar_restaurante()
+            case 3: 
+                ativar_restaurante()
 
-        case 4: 
-            finalizando_app()
-        
-        case _:
-            os.system('cls')
-            print('Opção inválida!\n')
+            case 4: 
+                finalizando_app()
+            case _:
+                opcao_invalida()
+    except: 
+        opcao_invalida()
+
+def exibir_subtitulo(texto):
+    os.system('cls')
+    print(texto)
+
+def voltar_ao_menu_principal():
+    input('\nDigite uma tecla para voltar ao menu principal: ')
+    main()
 
 def cadastro_restaurante():
-    os.system('cls')
-    print('Cadastrar restaurante\n')
+    exibir_subtitulo('Cadastro de restaurante\n')
+    nome_do_restaurante = str(input('Digite o nome restaurante\n'))
+    restaurante.append(nome_do_restaurante)
+    print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
+    voltar_ao_menu_principal()
 
 def listar_restaurante():
-    os.system('cls')
-    print('Listar restaurante\n')
+    exibir_subtitulo('Lista de restaurante\n')
+    for item in restaurante:
+        print(f'.{item}')
+    voltar_ao_menu_principal()
 
 def ativar_restaurante():
-    os.system('cls')
-    print('Ativar restaurante\n')
+    exibir_subtitulo('Ativar restaurante\n')
+    voltar_ao_menu_principal()
 
 def finalizando_app(): 
-    os.system('cls')
-    print('Finalizando app\n')
+    exibir_subtitulo('Finalizando app\n')
+
+def opcao_invalida():
+    exibir_subtitulo('Opção inválida!\n')
+    voltar_ao_menu_principal()
 
 def main(): 
+    os.system('cls')
     exibir_nome_do_aplicativo()
     exibir_opcoes()
     escolher_opcao()
