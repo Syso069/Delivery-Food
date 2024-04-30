@@ -1,6 +1,7 @@
 import os
 
-restaurante = ['AiFoude', 'Hamburgui Du Zé']
+restaurante = [{'nome': 'Aí FoudE', 'categoria': 'Bebida', 'ativo': 'True'}, {'nome': 'GastroFude', 'categoria': 'FastFude', 'ativo': 'False'}, 
+               {'nome': 'HamBuguiU', 'categoria': 'Hamburguer', 'ativo': 'True'}]
 
 def exibir_nome_do_aplicativo():
     print('''
@@ -54,8 +55,9 @@ def cadastro_restaurante():
 
 def listar_restaurante():
     exibir_subtitulo('Lista de restaurante\n')
+    nome_restaurante = restaurante['nome']
     for item in restaurante:
-        print(f'.{item}')
+        print(f'-{nome_restaurante}')
     voltar_ao_menu_principal()
 
 def ativar_restaurante():
